@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "byzdotme",
+  "version": "1.0.0",
+  "description": "byzdotme agent plugins",
+  "plugins": [
+    {
+      "name": "recruit-assist",
+      "description": "招聘辅助插件，用于根据 JD 筛选简历并准备面试问题。",
+      "source": ".",
+      "category": "productivity"
+    }
+  ]
+}

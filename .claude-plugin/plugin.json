@@ -3,13 +3,8 @@
   "version": "0.1.0",
   "description": "招聘辅助插件，用于根据 JD 筛选简历并准备面试问题。",
   "author": {
-    "name": "Recruit Assist Team"
+    "name": "byzdotme"
   },
   "license": "MIT",
-  "keywords": [
-    "recruiting",
-    "resume-screening",
-    "interview-prep",
-    "hiring"
-  ]
+  "keywords": ["recruiting", "resume-screening", "interview-prep", "hiring"]
 }

@@ -29,10 +29,10 @@ recruit-assist/
 
 本仓库包含 Codex marketplace 文件：`.agents/plugins/marketplace.json`，marketplace 名为 `byzdotme`。
 
-本地安装：
+从 GitHub 仓库安装 marketplace 并安装插件：
 
 ```bash
-codex plugin marketplace add /path/to/recruit-assist
+codex plugin marketplace add byzdotme/recruit-assist --ref main
 codex plugin add recruit-assist@byzdotme
 ```
 
@@ -42,14 +42,23 @@ codex plugin add recruit-assist@byzdotme
 
 本仓库包含 Claude Code catalog 文件：`.claude-plugin/marketplace.json`，marketplace 名为 `byzdotme`。
 
-本地安装：
+从 GitHub 仓库安装 marketplace 并安装插件：
 
 ```bash
-claude plugin marketplace add /path/to/recruit-assist
+claude plugin marketplace add byzdotme/recruit-assist@main
 claude plugin install recruit-assist@byzdotme
 ```
 
 安装后新开 Claude Code 会话，让 Claude Code 重新加载插件 skills。
+
+## 环境依赖
+
+- 需要安装并登录 Codex App、Codex CLI 或 Claude Code CLI 中的至少一种。
+- 需要能访问 `git@github.com:byzdotme/recruit-assist.git` 或 `https://github.com/byzdotme/recruit-assist`。如果仓库是私有仓库，同事需要对应 GitHub 权限和可用的 Git/SSH 或 HTTPS 凭据。
+- 插件本身不依赖 Python、Node.js、包管理器、数据库或后台服务。
+- 插件不会调用外部 API，也不会连接 ATS、邮箱、数据库或第三方招聘系统。
+- JD 建议使用 Markdown 或 TXT。PDF/DOCX 简历的读取依赖当前 agent 环境可用的文件解析能力；如果遇到扫描版 PDF、图片型 PDF 或解析乱码，需要先人工转换为可复制文本、Markdown、TXT 或可解析 PDF。
+- 插件没有 macOS 专属依赖；Windows、Linux、macOS 都可以使用，前提是对应 coding agent 支持插件安装和文件读取。
 
 ## 使用示例
 

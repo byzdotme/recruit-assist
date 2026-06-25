@@ -10,6 +10,8 @@
 - `skills/resume-screening/references/`：评分细则和报告模板。
 - `skills/interview-prep/SKILL.md`：面试准备工作流。
 - `skills/interview-prep/references/`：面试轮次策略和问题模板。
+- `skills/interview-evaluation/SKILL.md`：面试评价工作流。
+- `skills/interview-evaluation/references/`：评价评分细则和报告模板。
 - `docs/superpowers/`：设计说明和实施计划。
 
 生成物不要写入 plugin 源码目录；默认使用 `recruit-assist-output/`。
@@ -22,6 +24,7 @@
 find . -maxdepth 3 -type f | sort
 sed -n '1,160p' skills/resume-screening/SKILL.md
 sed -n '1,160p' skills/interview-prep/SKILL.md
+sed -n '1,160p' skills/interview-evaluation/SKILL.md
 ```
 
 修改 plugin manifest 后校验 JSON：
@@ -45,9 +48,10 @@ python3 -m json.tool .claude-plugin/plugin.json
 
 - 使用一个小型 JD。
 - 使用一份代表性 resume 或文本夹具。
+- 如果修改面试评价 skill，增加一份面试记录文本夹具。
 - 确认输出结构符合对应模板。
-- 确认只基于 JD 和 resume 中的可见证据生成结论。
-- 确认仍禁止基于年龄、性别、婚育、民族、宗教等无关或敏感属性评分、排序或提问。
+- 确认只基于 JD、resume 和面试记录中的可见证据生成结论。
+- 确认仍禁止基于年龄、性别、婚育、民族、宗教等无关或敏感属性评分、排序、提问或评价。
 
 ## Commit 与 PR
 

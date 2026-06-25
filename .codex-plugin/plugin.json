@@ -1,7 +1,7 @@
 {
   "name": "recruit-assist",
   "version": "0.1.0",
-  "description": "招聘辅助插件，用于根据 JD 筛选简历并准备面试问题。",
+  "description": "招聘辅助插件，用于根据 JD 筛选简历、准备面试问题并生成面试评价。",
   "author": {
     "name": "Recruit Assist Team"
   },
@@ -10,13 +10,14 @@
     "recruiting",
     "resume-screening",
     "interview-prep",
+    "interview-evaluation",
     "hiring"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Recruit Assist",
-    "shortDescription": "协助招聘者完成简历筛选和面试准备。",
-    "longDescription": "Recruit Assist 提供简历筛选和面试准备两个 agent skills。它可以读取项目中的 JD、PDF 简历和 DOCX 简历，生成可解释评分报告、候选人排序、面试策略和问题清单。",
+    "shortDescription": "协助招聘者完成简历筛选、面试准备和面试评价。",
+    "longDescription": "Recruit Assist 提供简历筛选、面试准备和面试评价三个 agent skills。它可以读取项目中的 JD、PDF 简历、DOCX 简历和面试过程记录，生成可解释评分报告、候选人排序、面试策略、问题清单和面试评价。",
     "developerName": "Recruit Assist Team",
     "category": "Productivity",
     "capabilities": [
@@ -25,6 +26,7 @@
     "defaultPrompt": [
       "根据这个 JD 批量筛选 resumes 目录里的简历",
       "为这位候选人的技术面准备面试问题",
+      "根据 JD、简历和面试记录生成面试评价",
       "根据筛选报告生成推荐面试名单"
     ],
     "brandColor": "#2563EB"

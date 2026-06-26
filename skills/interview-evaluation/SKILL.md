@@ -1,22 +1,37 @@
 ---
 name: interview-evaluation
-description: 基于 JD、候选人简历和面试官记录生成面试评价、分项打分和录用建议。Use when the user asks to evaluate an interview, summarize interview notes, score a candidate after an interview, or produce interviewer feedback from JD plus resume plus messy TXT interview notes.
+description: 基于 JD、候选人简历和面试官记录生成面试评价、分项打分和录用建议。Use when the user asks to evaluate an interview, summarize interview notes, score a candidate after an interview, or produce interviewer feedback from JD plus resume plus interview notes in flexible file or text formats.
 ---
 
 # 面试评价
 
+## 输入读取规则
+
+- 支持文件路径、粘贴文本或用户在对话中明确标注的内容。
+- Markdown、TXT、纯文本和粘贴内容直接读取；PDF、DOCX 和其他可读文本格式优先使用当前 agent 环境可用能力抽取文本。
+- 不要求用户预先转换格式；仅在无法读取、抽取结果明显不可用或缺少必要内容时，记录来源和失败原因，并请求用户补充内容或转换格式。
+
+## 输出路径规则
+
+- 用户指定输出路径时，优先使用用户指定路径。
+- 用户未指定输出路径且简历来源是文件路径时，将评价写入对应简历文件同目录。
+- 默认文件名使用 `{候选人姓名}-interview-evaluation.md`；候选人姓名必须来自简历、面试记录或用户明确提供的信息。
+- 候选人姓名用于文件名时，应移除或替换路径分隔符、控制字符和其他不适合文件名的字符，保留可读性。
+- 如果无法可靠提取候选人姓名，使用简历文件名主干；仍无法确定时使用 `unknown-candidate-interview-evaluation.md`。
+- 如果简历不是文件路径或无法确定同目录，将评价写入 `recruit-assist-output/{候选人姓名或回退名}-interview-evaluation.md`。
+
 ## 工作流
 
-1. 确认用户提供了 JD 文件、指定候选人简历和面试过程记录。
-2. 读取 JD。Markdown 和 TXT 直接读取文本；其他格式请求用户转换。
-3. 读取指定简历。PDF 使用当前 agent 环境可用的 PDF 文本抽取能力；DOCX 使用当前 agent 环境可用的文档读取能力。
-4. 读取面试过程记录。TXT 和 Markdown 直接读取；如果记录格式凌乱、存在错别字或口语化表达，先做语义整理，不改变候选人原意。
+1. 确认用户提供了 JD 来源、指定候选人简历和面试过程记录。
+2. 按“输入读取规则”读取 JD、简历和面试过程记录。
+3. 如果 JD、简历或面试记录无法解析，记录来源、失败原因和“需要人工复核”。
+4. 如果面试记录格式凌乱、存在错别字或口语化表达，先做语义整理，不改变候选人原意。
 5. 提取 JD 的岗位目标、核心职责、硬性要求、加分项和关键能力。
 6. 提取简历中的关键经历、项目、技能、成果、疑点和岗位相关缺口。
 7. 从面试记录中区分面试官问题、候选人回答、面试官即时判断、未回答或未追问的信息。
 8. 读取 `references/evaluation-rubric.md`，按默认 100 分制评价。
 9. 读取 `references/evaluation-template.md`，生成 Markdown 面试评价。
-10. 如果用户未指定输出路径，将评价写入 `recruit-assist-output/interview-evaluation.md`。
+10. 按“输出路径规则”写入评价。
 
 ## 生成要求
 
